@@ -1,0 +1,23 @@
+article {
+  max-width: 100%;
+  width: 900px;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 18px;
+  text-align: left;
+  padding: 12px 0;
+  overflow: hidden;
+}
+
+p {
+  transition: all 0.5s ease-in-out;
+}
+
+p.show {
+  opacity: 1;
+}
+
+p.hide {
+  transform: translateY(-500px);
+  opacity: 0;
+}
