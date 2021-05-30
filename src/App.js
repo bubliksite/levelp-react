@@ -5,10 +5,9 @@ import Button from "./components/Button";
 import Article from "./components/Article";
 
 function App() {
-  const [isShow, setToggle] = useState(true);
+  const [isShow, setIsShow] = useState(true);
   function toggleText() {
-    setToggle(!isShow);
-    console.log(isShow);
+    setIsShow(!isShow);
   }
   return (
     <div className="App">
