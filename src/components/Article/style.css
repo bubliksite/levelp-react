@@ -1,15 +1,15 @@
 article {
-  max-width: 100%;
-  width: 900px;
+  max-width: 900px;
   margin: 0 auto;
   color: #fff;
   font-size: 18px;
   text-align: left;
-  padding: 12px 0;
+  padding: 0 12px;
   overflow: hidden;
 }
 
 p {
+  padding: 0 18px;
   transition: all 0.5s ease-in-out;
 }
 
@@ -20,4 +20,20 @@ p.show {
 p.hide {
   transform: translateY(-500px);
   opacity: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 10px 5px;
+  border-bottom: 1px solid #5cdb95;
+  background-color: #05386b;
+}
+
+li.done {
+  text-decoration: line-through;
+  background-color: #eee;
+  color: #aaa;
 }

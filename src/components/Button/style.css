@@ -1,5 +1,5 @@
 .btn {
-  margin: 20px 0;
+  margin-bottom: 20px;
   padding: 10px 30px;
   background-color: #05386b;
   border: none;
@@ -7,4 +7,5 @@
   color: #fff;
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
 }
