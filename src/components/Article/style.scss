@@ -6,39 +6,33 @@ article {
   text-align: left;
   padding: 0 12px;
   overflow: hidden;
-}
-
-p,
-ul {
-  padding-left: unset;
-}
-
-p {
-  padding: 0 18px;
-  transition: all 0.5s ease-in-out;
-}
-
-p.show {
-  opacity: 1;
-}
-
-p.hide {
-  transform: translateY(-500px);
-  opacity: 0;
-}
-
-ul {
-  list-style-type: none;
-}
-
-li {
-  padding: 10px 5px;
-  border-bottom: 1px solid #5cdb95;
-  background-color: #05386b;
-}
-
-li.done {
-  text-decoration: line-through;
-  background-color: #eee;
-  color: #aaa;
+  p {
+    padding: 0 18px;
+    transition: all 0.5s ease-in-out;
+    &.show {
+      opacity: 1;
+    }
+    &.hide {
+      transform: translateY(-500px);
+      opacity: 0;
+    }
+    ul {
+      padding-left: unset;
+      list-style-type: none;
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px 10px 5px;
+        border-bottom: 1px solid #5cdb95;
+        background-color: #05386b;
+        &.done {
+          text-decoration: line-through;
+        }
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
 }

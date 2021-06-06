@@ -1,4 +1,4 @@
-.btn {
+.btn-default {
   margin-bottom: 20px;
   padding: 10px 30px;
   background-color: #05386b;
@@ -8,4 +8,7 @@
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
+  &:hover {
+    @extend .btn-default
+  }
 }

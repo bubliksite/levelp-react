@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import "./style.scss";
 
 function Article(props) {
@@ -9,7 +10,7 @@ function Article(props) {
       fetch("https://jsonplaceholder.typicode.com/todos")
         .then((response) => response.json())
         .then((response) => setData(response));
-    }, 3000);
+    }, 5000);
   });
   return (
     <article>
@@ -19,12 +20,24 @@ function Article(props) {
             data.map((item) => {
               return (
                 <li className={item.completed ? "done" : ""} key={item.id}>
-                  {item.title}
+                  <p>
+                    {item.id}. {item.title}
+                  </p>
+                  <Button
+                    className={item.completed ? "btn-secondary" : "btn-success"}
+                    disabled={item.completed ? "disabled" : ""}
+                  >
+                    {item.completed ? "Done" : "Do it!"}
+                  </Button>
                 </li>
               );
             })
           ) : (
-            <div style={{ "text-align": "center" }}>Загружаю...</div>
+            <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
+            </div>
           )}
         </ul>
       </p>

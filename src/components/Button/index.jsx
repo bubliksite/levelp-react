@@ -1,10 +1,10 @@
 import React from "react";
-import "./style.css";
+import "./style.scss";
 
 function Button(props) {
   const { isShow, onClick } = props;
   return (
-    <button className="btn" onClick={onClick}>
+    <button className="btn btn-default" onClick={onClick}>
       {isShow ? "Hide" : "Show"}
     </button>
   );
