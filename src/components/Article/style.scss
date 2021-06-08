@@ -15,6 +15,7 @@ article {
     &.hide {
       transform: translateY(-500px);
       opacity: 0;
+      visibility: collapse;
     }
     ul {
       padding-left: unset;
@@ -32,6 +33,9 @@ article {
         p {
           margin: 0;
         }
+      }
+      .spinner-box {
+        min-height: 60vh;
       }
     }
   }

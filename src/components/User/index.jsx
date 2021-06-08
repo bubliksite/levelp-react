@@ -1,6 +1,8 @@
-import React from "react";
-import "./style.css";
+import React from 'react'
+import './style.scss'
 
-function User() {}
+function User() {
+  return <div>User Page</div>
+}
 
-export default User;
+export default User

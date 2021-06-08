@@ -1,4 +1,24 @@
 header {
   color: #05386b;
   padding: 15px 0;
+  h2 {
+    margin-bottom: 20px;
+  }
+  nav {
+    padding: 20px 0;
+    margin: 10px 0;
+    background-color: #05386b;
+    display: flex;
+    justify-content: space-around;
+    a {
+      color: #fff;
+      &:hover {
+        color: #ffffff;
+      }
+      &.active {
+        color: #5cdb95;
+      }
+    }
+  }
+
 }

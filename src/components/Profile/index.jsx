@@ -1,6 +1,8 @@
-import React from "react";
-import "./style.css";
+import React from 'react'
+import './style.scss'
 
-function Profile() {}
+function Profile() {
+  return <div>Profile Page</div>
+}
 
-export default Profile;
+export default Profile

@@ -1,24 +1,16 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-import React, { useState } from "react";
-import Input from "./components/Input";
-import Header from "./components/Header";
-import Button from "./components/Button";
-import Article from "./components/Article";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
+import React from 'react'
+import Header from './components/Header'
+import {HomePage} from './pages'
 
 function App() {
-  const [isShow, setIsShow] = useState(false);
-  function toggleText() {
-    setIsShow(!isShow);
-  }
   return (
     <div className="App">
       <Header title="React App" />
-      <Input />
-      <Button isShow={isShow} onClick={toggleText} />
-      <Article isShow={isShow} />
+      <HomePage />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
