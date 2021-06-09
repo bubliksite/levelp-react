@@ -12,11 +12,11 @@ function Header(props) {
           <NavLink activeClassName="active" to="/" exact>
             Home
           </NavLink>
-          <NavLink activeClassName="active" to="/fetchtasklist">
-            Fetch Task List
-          </NavLink>
           <NavLink activeClassName="active" to="/todolist">
             To do List
+          </NavLink>
+          <NavLink activeClassName="active" to="/fetchtasklist">
+            Fetch Task List
           </NavLink>
           <NavLink activeClassName="active" to="/user">
             User

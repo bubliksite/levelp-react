@@ -1,34 +1,51 @@
-import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React from 'react'
+import {connect} from 'react-redux'
 import TodoList from '../components/TodoList'
 import {actionCreateToDo} from '../store/todos'
 
-//Пример "умного" компонента
-export default function TaskContainer() {
-  const todos = useSelector((state) => state.task)
-
-  const [change, setChange] = useState('')
-
-  const handlerChangeInput = (e) => {
-    setChange(e.target.value)
+//Пример "умного" компонента (классовый)
+class TaskContainer extends React.Component {
+  state = {
+    change: ''
   }
-  const dispatch = useDispatch()
 
-  const handlerAddToDo = (e) => {
+  handlerChangeInput = (e) => {
+    this.setState({change: e.target.value})
+  }
+
+  handlerAddToDo = (e) => {
     e.preventDefault()
     const data = {
       id: Date.now(),
-      title: change
+      title: this.state.change
     }
-    dispatch(actionCreateToDo(data))
-    setChange('')
+    this.props.handlerAddToDo(data)
+    this.setState({change: ''})
   }
-  return (
-    <TodoList
-      todos={todos}
-      change={change}
-      handlerAddToDo={handlerAddToDo}
-      handlerChangeInput={handlerChangeInput}
-    />
-  )
+  render() {
+    const {todos} = this.props
+    const {change} = this.state
+    return (
+      <TodoList
+        todos={todos}
+        change={change}
+        handlerChangeInput={this.handlerChangeInput}
+        handlerAddToDo={this.handlerAddToDo}
+      />
+    )
+  }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    todos: state.task
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handlerAddToDo: (payload) => dispatch(actionCreateToDo(payload))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskContainer)
