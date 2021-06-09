@@ -1,26 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './style.scss'
-import {useDispatch} from 'react-redux'
-import {actionCreateToDo} from '../../store/todos'
 
 //Пример "глупого" компонента
-const TodoList = ({todos}) => {
-  const dispatch = useDispatch()
-  const [change, setChange] = useState('')
-
-  const handlerChangeInput = (e) => {
-    setChange(e.target.value)
-  }
-  const handlerAddToDo = (e) => {
-    e.preventDefault()
-    const data = {
-      id: Date.now(),
-      title: change
-    }
-    dispatch(actionCreateToDo(data))
-    setChange('')
-  }
-
+const TodoList = ({todos, change, handlerChangeInput, handlerAddToDo}) => {
   return (
     <div className="container">
       <form className="form-inline mb-4">
