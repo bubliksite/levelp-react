@@ -8,24 +8,26 @@ function Header(props) {
     <header>
       <h2>{title}</h2>
       <nav>
-        <NavLink activeClassName="active" to="/" exact>
-          Home
-        </NavLink>
-        <NavLink activeClassName="active" to="/fetchtasklist">
-          Fetch Task List
-        </NavLink>
-        <NavLink activeClassName="active" to="/todolist">
-          To do List
-        </NavLink>
-        <NavLink activeClassName="active" to="/user">
-          User
-        </NavLink>
-        <NavLink activeClassName="active" to="/settings">
-          Settings
-        </NavLink>
-        <NavLink activeClassName="active" to="/profile">
-          Profile
-        </NavLink>
+        <div className="container">
+          <NavLink activeClassName="active" to="/" exact>
+            Home
+          </NavLink>
+          <NavLink activeClassName="active" to="/fetchtasklist">
+            Fetch Task List
+          </NavLink>
+          <NavLink activeClassName="active" to="/todolist">
+            To do List
+          </NavLink>
+          <NavLink activeClassName="active" to="/user">
+            User
+          </NavLink>
+          <NavLink activeClassName="active" to="/settings">
+            Settings
+          </NavLink>
+          <NavLink activeClassName="active" to="/profile">
+            Profile
+          </NavLink>
+        </div>
       </nav>
     </header>
   )

@@ -1,24 +1,23 @@
-input {
+input.form-control {
   background-color: transparent;
   border: 1px solid #05386b;
   border-radius: 10px;
   padding: 10px 30px;
   color: #05386b;
-  margin: 0 10px;
   font-weight: bold;
+  outline: none;
   &::placeholder {
     color: #fff;
     opacity: 0.7;
   }
   &:focus {
-    outline: none;
+    @extend .form-control;
   }
 }
 
 .list {
   padding-left: 0;
   margin: 10px auto;
-  max-width: 400px;
   text-align: left;
   li {
     color: #fff;

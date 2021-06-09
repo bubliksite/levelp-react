@@ -8,8 +8,10 @@ header {
     padding: 20px 0;
     margin: 10px 0;
     background-color: #05386b;
-    display: flex;
-    justify-content: space-around;
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
     a {
       color: #fff;
       &:hover {
@@ -17,8 +19,9 @@ header {
       }
       &.active {
         color: #5cdb95;
+        font-weight: bold;
+        text-decoration: underline;
       }
     }
   }
-
 }

@@ -1,6 +1,5 @@
 .btn-default {
-  margin-bottom: 20px;
-  padding: 10px 30px;
+  padding: 6px 0;
   background-color: #05386b;
   border: none;
   border-radius: 10px;
@@ -9,6 +8,6 @@
   font-weight: bold;
   cursor: pointer;
   &:hover {
-    @extend .btn-default
+    @extend .btn-default;
   }
 }
