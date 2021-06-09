@@ -4,7 +4,7 @@ import './style.scss'
 function Button(props) {
   const {isShow, onClick} = props
   return (
-    <button className="btn btn-default" onClick={onClick}>
+    <button className="btn btn-default px-3 mb-4" onClick={onClick}>
       {isShow ? 'Hide' : 'Show'}
     </button>
   )

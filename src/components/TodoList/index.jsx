@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import './style.scss'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {actionCreateToDo} from '../../store/todos'
 
-const TodoList = () => {
-  const todos = useSelector((state) => state.task)
+//Пример "глупого" компонента
+const TodoList = ({todos}) => {
   const dispatch = useDispatch()
   const [change, setChange] = useState('')
 
