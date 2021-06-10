@@ -10,7 +10,13 @@ import Button from '../Button'
 import Input from '../Input'
 
 //Пример "глупого" компонента
-const TodoList = ({todos, change, handlerChangeInput, handlerAddToDo}) => {
+const TodoList = ({
+  todos,
+  change,
+  handlerChangeInput,
+  handlerAddToDo,
+  handlerDeleteTodo
+}) => {
   return (
     <div className="container">
       <div className="form-inline mb-4">
@@ -39,7 +45,12 @@ const TodoList = ({todos, change, handlerChangeInput, handlerAddToDo}) => {
             key={item.id}
           >
             <Link to={`/todolist/${item.id}`}>{item.title}</Link>
-            <Button title="Remove" variant="danger" classes="btn-sm" />
+            <Button
+              title="Remove"
+              variant="danger"
+              classes="btn-sm"
+              onClick={() => handlerDeleteTodo(item.id)}
+            />
           </ListGroupItem>
         ))}
       </ListGroup>

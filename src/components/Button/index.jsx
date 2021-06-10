@@ -6,7 +6,7 @@ function Button({onClick, title, classes, disabled, variant}) {
   return (
     <BootstrapButton
       className={classes}
-      onClick={(e) => onClick(e)}
+      onClick={onClick}
       disabled={disabled}
       variant={variant}
     >
