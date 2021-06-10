@@ -31,7 +31,7 @@ const TodoList = ({todos, change, handlerChangeInput, handlerAddToDo}) => {
           />
         </div>
       </div>
-
+      {/*Показывать только, если есть список, иначе 'Список пуст'*/}
       <ListGroup>
         {todos.task.map((item) => (
           <ListGroupItem
