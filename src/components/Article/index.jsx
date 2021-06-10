@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {Button} from 'react-bootstrap'
-import './style.scss'
 import Spinner from '../Spinner'
+import Button from '../Button'
 
 function Article(props) {
   const {isShow} = props
@@ -16,23 +15,29 @@ function Article(props) {
   return (
     <>
       {isShow && (
-        <article>
-          <ul>
+        <article className="container">
+          <ul className="list-group">
             {data.length ? (
               data.map((item) => {
                 return (
-                  <li className={item.completed ? 'done' : ''} key={item.id}>
-                    <p>
-                      {item.id}. {item.title}
-                    </p>
+                  <li
+                    className={
+                      'list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-' +
+                      (item.completed ? 'secondary' : 'success')
+                    }
+                    key={item.id}
+                  >
+                    {item.id}. {item.title}
                     <Button
-                      className={
-                        item.completed ? 'btn-secondary' : 'btn-success'
+                      classes={
+                        'btn-sm ' +
+                        (item.completed
+                          ? 'btn-secondary disabled'
+                          : 'btn-success')
                       }
-                      disabled={item.completed ? 'disabled' : ''}
-                    >
-                      {item.completed ? 'Done' : 'Do it!'}
-                    </Button>
+                      disabled={item.completed}
+                      title={item.completed ? 'Done' : 'Do it!'}
+                    />
                   </li>
                 )
               })

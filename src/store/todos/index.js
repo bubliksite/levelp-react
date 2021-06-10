@@ -1,9 +1,5 @@
 const initState = {
-  task: [
-    {id: 1, title: 'New title'},
-    {id: 2, title: 'Second title'},
-    {id: 3, title: 'Third title'}
-  ]
+  task: []
 }
 
 const actionType = {

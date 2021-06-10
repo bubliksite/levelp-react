@@ -14,14 +14,20 @@ class TaskContainer extends React.Component {
   }
 
   handlerAddToDo = (e) => {
-    e.preventDefault()
-    const data = {
-      id: Date.now(),
-      title: this.state.change
+    const {change} = this.state
+    if (change) {
+      e.preventDefault()
+      const data = {
+        id: Date.now(),
+        title: change
+      }
+      this.props.handlerAddToDo(data)
+      this.setState({change: ''})
+    } else {
+      //Действия для пустого поля ввода
     }
-    this.props.handlerAddToDo(data)
-    this.setState({change: ''})
   }
+
   render() {
     const {todos} = this.props
     const {change} = this.state

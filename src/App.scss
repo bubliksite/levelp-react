@@ -1,0 +1,9 @@
+@import '~bootstrap';
+
+body {
+  @extend .bg-light;
+}
+
+.App {
+  text-align: center;
+}

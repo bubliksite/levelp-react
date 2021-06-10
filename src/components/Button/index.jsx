@@ -1,13 +1,25 @@
 import React from 'react'
-import './style.scss'
+import PropTypes from 'prop-types'
+import {Button as BootstrapButton} from 'react-bootstrap'
 
-function Button(props) {
-  const {isShow, onClick} = props
+function Button({onClick, title, classes, disabled, variant}) {
   return (
-    <button className="btn btn-default px-3 mb-4" onClick={onClick}>
-      {isShow ? 'Hide' : 'Show'}
-    </button>
+    <BootstrapButton
+      className={classes}
+      onClick={(e) => onClick(e)}
+      disabled={disabled}
+      variant={variant}
+    >
+      {title}
+    </BootstrapButton>
   )
+}
+
+Button.propTypes = {
+  classes: PropTypes.string,
+  title: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool
 }
 
 export default Button

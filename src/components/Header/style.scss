@@ -1,26 +1,17 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
 header {
-  color: #05386b;
-  padding: 15px 0;
-  h2 {
-    margin-bottom: 20px;
-  }
+  //@include flex-space-between;
   nav {
-    padding: 20px 0;
-    margin: 10px 0;
-    background-color: #05386b;
-    .container {
-      display: flex;
-      justify-content: space-between;
-    }
     a {
-      color: #fff;
+      color: #ffffff;
       &:hover {
-        color: #ffffff;
+        @extend a;
       }
       &.active {
-        color: #5cdb95;
+        color: $color-warning;
         font-weight: bold;
-        text-decoration: underline;
       }
     }
   }

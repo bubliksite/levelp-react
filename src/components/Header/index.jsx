@@ -5,30 +5,35 @@ import {NavLink} from 'react-router-dom'
 function Header(props) {
   const {title} = props
   return (
-    <header>
-      <h2>{title}</h2>
-      <nav>
-        <div className="container">
-          <NavLink activeClassName="active" to="/" exact>
+    <header className="mb-4">
+      <h2 className="py-3">{title}</h2>
+
+      <div className="bg-dark">
+        <nav className="container nav justify-content-between py-2">
+          <NavLink className="nav-link" activeClassName="active" to="/" exact>
             Home
           </NavLink>
-          <NavLink activeClassName="active" to="/todolist">
+          <NavLink className="nav-link" activeClassName="active" to="/todolist">
             To do List
           </NavLink>
-          <NavLink activeClassName="active" to="/fetchtasklist">
+          <NavLink
+            className="nav-link"
+            activeClassName="active"
+            to="/fetchtasklist"
+          >
             Fetch Task List
           </NavLink>
-          <NavLink activeClassName="active" to="/user">
+          <NavLink className="nav-link" activeClassName="active" to="/user">
             User
           </NavLink>
-          <NavLink activeClassName="active" to="/settings">
+          <NavLink className="nav-link" activeClassName="active" to="/settings">
             Settings
           </NavLink>
-          <NavLink activeClassName="active" to="/profile">
+          <NavLink className="nav-link" activeClassName="active" to="/profile">
             Profile
           </NavLink>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </header>
   )
 }

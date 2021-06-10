@@ -1,33 +1,6 @@
-input.form-control {
-  background-color: transparent;
-  border: 1px solid #05386b;
-  border-radius: 10px;
-  padding: 10px 30px;
-  color: #05386b;
-  font-weight: bold;
-  outline: none;
-  &::placeholder {
-    color: #fff;
-    opacity: 0.7;
-  }
-  &:focus {
-    @extend .form-control;
-  }
-}
-
-.list {
-  padding-left: 0;
-  margin: 10px auto;
-  text-align: left;
-  li {
-    color: #fff;
-    list-style-type: none;
-    background-color: #05386b;
-    padding: 10px 20px;
-    border-bottom: 1px solid #5cdb95;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      background-color: rgba(5, 56, 107, 0.8);
-    }
+@import '../../styles/variables.scss';
+.list-group-item {
+  a {
+    color: $color-secondary;
   }
 }

@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import './style.scss'
 import Button from '../Button'
 import Article from '../Article'
 
@@ -10,7 +9,12 @@ function FetchTasklist() {
   }
   return (
     <div>
-      <Button isShow={isShow} onClick={toggleText} />
+      <Button
+        title={isShow ? 'Hide' : 'Show'}
+        classes="px-4 mb-4"
+        variant="warning"
+        onClick={toggleText}
+      />
       <Article isShow={isShow} />
     </div>
   )
