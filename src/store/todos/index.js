@@ -32,7 +32,7 @@ export const actionSetTodo = (payload) => {
 const taskReducer = (state = initState, action) => {
   switch (action.type) {
     case actionType.ADD_TASK:
-      return {...state, task: [...state.task, action.payload]}
+      return {...state, task: [action.payload, ...state.task]}
     case actionType.DELETE_TASK:
       return {
         ...state,

@@ -1,6 +1,13 @@
-@import '../../styles/variables.scss';
-.list-group-item {
+@import '../../styles/variables';
+
+.list-group-item-info {
   a {
-    color: $color-secondary;
+    color: $color-text-info;
+  }
+}
+
+.list-group-item-secondary {
+  a {
+    color: $color-text-secondary;
   }
 }

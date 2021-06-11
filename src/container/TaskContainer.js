@@ -6,17 +6,20 @@ import {actionCreateToDo, actionDeleteTodo, getTodosThunk} from '../store/todos'
 //Пример "умного" компонента (классовый)
 class TaskContainer extends React.Component {
   state = {
-    change: ''
+    change: '',
+    alert: false,
+    showSpinner: true
   }
 
   handlerChangeInput = (e) => {
+    this.setState({alert: false})
     this.setState({change: e.target.value})
   }
 
   handlerAddToDo = (e) => {
     const {change} = this.state
+    e.preventDefault()
     if (change) {
-      e.preventDefault()
       const data = {
         id: Date.now(),
         title: change
@@ -24,12 +27,15 @@ class TaskContainer extends React.Component {
       this.props.handlerAddToDo(data)
       this.setState({change: ''})
     } else {
-      //Действия для пустого поля ввода
+      this.setState({alert: true})
     }
   }
 
   handlerDeleteTodo = (idTodo) => {
     this.props.handlerDeleteTodo(idTodo)
+    if (this.props.todos.length === 1) {
+      this.setState({setShowSpinner: false})
+    }
   }
 
   componentDidMount() {
@@ -39,10 +45,14 @@ class TaskContainer extends React.Component {
   render() {
     const {todos} = this.props
     const {change} = this.state
+    const {alert} = this.state
+    const {showSpinner} = this.state
     return (
       <TodoList
         todos={todos}
         change={change}
+        alert={alert}
+        showSpinner={showSpinner}
         handlerChangeInput={this.handlerChangeInput}
         handlerDeleteTodo={this.handlerDeleteTodo}
         handlerAddToDo={this.handlerAddToDo}

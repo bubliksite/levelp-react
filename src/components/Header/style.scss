@@ -1,8 +1,6 @@
-@import '../../styles/variables.scss';
-@import '../../styles/mixins.scss';
+@import '~bootstrap';
 
 header {
-  //@include flex-space-between;
   nav {
     a {
       color: #ffffff;
@@ -10,7 +8,7 @@ header {
         @extend a;
       }
       &.active {
-        color: $color-warning;
+        @extend .text-warning;
         font-weight: bold;
       }
     }
