@@ -17,7 +17,7 @@ function Button({onClick, title, classes, disabled, variant}) {
 
 Button.propTypes = {
   classes: PropTypes.string,
-  title: PropTypes.string,
+  //title: PropTypes.object,
   onClick: PropTypes.func,
   disabled: PropTypes.bool
 }
