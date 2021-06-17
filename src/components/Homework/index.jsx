@@ -1,6 +1,6 @@
 import React from 'react'
 import TaskContainer from '../../container/TaskContainer'
-import CategoryList from '../CategoryList'
+import CategoryContainer from '../../container/CategoryContainer'
 
 function Homework() {
   return (
@@ -10,7 +10,7 @@ function Homework() {
           <TaskContainer />
         </div>
         <div className="col-md-6">
-          <CategoryList />
+          <CategoryContainer />
         </div>
       </div>
     </div>
