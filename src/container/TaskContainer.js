@@ -1,14 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import TodoList from '../components/TodoList'
-import {actionCreateToDo, actionDeleteTodo, getTodosThunk} from '../store/todos'
+import {actionCreateToDo, actionDeleteTodo} from '../store/todos'
 
 //Пример "умного" компонента (классовый)
 class TaskContainer extends React.Component {
   state = {
     change: '',
-    alert: false,
-    showSpinner: true
+    alert: false
   }
 
   handlerChangeInput = (e) => {
@@ -33,26 +32,17 @@ class TaskContainer extends React.Component {
 
   handlerDeleteTodo = (idTodo) => {
     this.props.handlerDeleteTodo(idTodo)
-    if (this.props.todos.length === 1) {
-      this.setState({setShowSpinner: false})
-    }
-  }
-
-  componentDidMount() {
-    this.props.getTodosThunk()
   }
 
   render() {
     const {todos} = this.props
     const {change} = this.state
     const {alert} = this.state
-    const {showSpinner} = this.state
     return (
       <TodoList
         todos={todos}
         change={change}
         alert={alert}
-        showSpinner={showSpinner}
         handlerChangeInput={this.handlerChangeInput}
         handlerDeleteTodo={this.handlerDeleteTodo}
         handlerAddToDo={this.handlerAddToDo}
@@ -70,8 +60,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handlerAddToDo: (payload) => dispatch(actionCreateToDo(payload)),
-    handlerDeleteTodo: (payload) => dispatch(actionDeleteTodo(payload)),
-    getTodosThunk: () => dispatch(getTodosThunk())
+    handlerDeleteTodo: (payload) => dispatch(actionDeleteTodo(payload))
   }
 }
 

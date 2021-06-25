@@ -3,27 +3,23 @@ import './style.scss'
 import Input from '../Input'
 import Button from '../Button'
 import Alert from '../Alert'
-import Spinner from '../Spinner'
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
-import {Trash} from 'react-bootstrap-icons'
-import {Link} from 'react-router-dom'
+import {Trash, CheckSquare, Square} from 'react-bootstrap-icons'
+import PropTypes from 'prop-types'
 
 const CategoryList = ({
   categories,
+  todoId,
   alert,
   change,
-  showSpinner,
   handlerChangeInput,
   handlerAddCategory,
   handlerDeleteCategory
 }) => {
   return (
     <>
-      <form
-        className="form-inline mb-4"
-        onSubmit={(e) => handlerAddCategory(e)}
-      >
-        <div className="form-group col-sm-10 p-0">
+      <form className="d-flex mb-4" onSubmit={(e) => handlerAddCategory(e)}>
+        <div className="form-group flex-grow-1">
           <Input
             classes="form-control w-100"
             placeholder="Add category"
@@ -31,7 +27,7 @@ const CategoryList = ({
             onChange={(e) => handlerChangeInput(e)}
           />
         </div>
-        <div className="form-group col-sm-2 p-0 pl-sm-3">
+        <div className="form-group ml-3">
           <Button
             classes="w-100"
             variant="warning"
@@ -42,30 +38,49 @@ const CategoryList = ({
       </form>
       {alert ? <Alert type="danger" text="This field can't be empty" /> : ''}
       <ListGroup>
-        {categories.category.length ? (
-          categories.category.map((item) => (
+        {categories.category.map((item) => {
+          return item.todoId === todoId ? (
             <ListGroupItem
               className="list-group-item-action d-flex justify-content-between align-items-center"
               variant="warning"
               key={item.id}
             >
-              <Link to={`/categories/${item.id}`}>{item.title}</Link>
-              <Button
-                title={<Trash size="20" />}
-                variant="danger"
-                classes="btn-sm"
-                onClick={() => handlerDeleteCategory(item.id)}
-              />
+              <div>{item.title}</div>
+              <div>
+                <Button
+                  title={
+                    item.checked ? (
+                      <CheckSquare size="20" />
+                    ) : (
+                      <Square size="20" />
+                    )
+                  }
+                  variant="link"
+                  classes="btn-sm mr-2"
+                />
+                <Button
+                  title={<Trash size="20" />}
+                  variant="danger"
+                  classes="btn-sm"
+                  onClick={() => handlerDeleteCategory(item.id)}
+                />
+              </div>
             </ListGroupItem>
-          ))
-        ) : showSpinner ? (
-          <Spinner />
-        ) : (
-          <Alert type="light" text="This list is empty" />
-        )}
+          ) : null
+        })}
       </ListGroup>
     </>
   )
+}
+
+CategoryList.propTypes = {
+  categories: PropTypes.object,
+  todoId: PropTypes.number,
+  alert: PropTypes.bool,
+  change: PropTypes.string,
+  handlerChangeInput: PropTypes.func,
+  handlerAddCategory: PropTypes.func,
+  handlerDeleteCategory: PropTypes.func
 }
 
 export default CategoryList

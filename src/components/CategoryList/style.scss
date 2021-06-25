@@ -4,4 +4,7 @@
   a {
     color: $color-text-warning;
   }
+  button.btn-link {
+    @extend a;
+  }
 }

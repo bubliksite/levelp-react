@@ -6,11 +6,10 @@ import './style.scss'
 
 import {Link} from 'react-router-dom'
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
-import {Check2, Trash} from 'react-bootstrap-icons'
+import {Trash} from 'react-bootstrap-icons'
 
 import Button from '../Button'
 import Input from '../Input'
-import Spinner from '../Spinner'
 import Alert from '../Alert'
 
 //Пример "глупого" компонента
@@ -18,15 +17,14 @@ const TodoList = ({
   todos,
   change,
   alert,
-  showSpinner,
   handlerChangeInput,
   handlerAddToDo,
   handlerDeleteTodo
 }) => {
   return (
     <>
-      <form className="form-inline mb-4" onSubmit={(e) => handlerAddToDo(e)}>
-        <div className="form-group col-sm-10 p-0">
+      <form className="d-flex mb-4" onSubmit={(e) => handlerAddToDo(e)}>
+        <div className="form-group flex-grow-1">
           <Input
             classes="form-control w-100"
             placeholder="Add task"
@@ -34,7 +32,7 @@ const TodoList = ({
             onChange={(e) => handlerChangeInput(e)}
           />
         </div>
-        <div className="form-group col-sm-2 p-0 pl-sm-3">
+        <div className="form-group ml-3">
           <Button
             classes="w-100"
             variant="info"
@@ -49,24 +47,22 @@ const TodoList = ({
           todos.task.map((item) => (
             <ListGroupItem
               className="list-group-item-action d-flex justify-content-between align-items-center"
-              variant={item.completed ? 'secondary' : 'info'}
+              variant="info"
               key={item.id}
             >
-              <Link to={`/todolist/${item.id}`} className="pr-4 text-left">
+              <Link to={`/homework/${item.id}`} className="pr-4 text-left">
                 {item.title}
               </Link>
-              <Button
-                title={
-                  item.completed ? <Trash size="20" /> : <Check2 size="20" />
-                }
-                variant={item.completed ? 'danger' : 'info'}
-                classes="btn-sm"
-                onClick={() => handlerDeleteTodo(item.id)}
-              />
+              <div>
+                <Button
+                  title={<Trash size="20" />}
+                  variant="danger"
+                  classes="btn-sm"
+                  onClick={() => handlerDeleteTodo(item.id)}
+                />
+              </div>
             </ListGroupItem>
           ))
-        ) : showSpinner ? (
-          <Spinner />
         ) : (
           <Alert type="light" text="This list is empty" />
         )}

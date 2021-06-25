@@ -6,10 +6,10 @@ function Homework() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-5 mb-5">
           <TaskContainer />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-7 mb-5">
           <CategoryContainer />
         </div>
       </div>
