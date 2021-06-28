@@ -14,6 +14,7 @@ const CategoryList = ({
   change,
   handlerChangeInput,
   handlerAddCategory,
+  handlerEditCategoryChecked,
   handlerDeleteCategory
 }) => {
   return (
@@ -48,7 +49,7 @@ const CategoryList = ({
               <div>{item.title}</div>
               <div>
                 <Button
-                  title={
+                  icon={
                     item.checked ? (
                       <CheckSquare size="20" />
                     ) : (
@@ -57,9 +58,12 @@ const CategoryList = ({
                   }
                   variant="link"
                   classes="btn-sm mr-2"
+                  onClick={() =>
+                    handlerEditCategoryChecked(item.id, item.checked)
+                  }
                 />
                 <Button
-                  title={<Trash size="20" />}
+                  icon={<Trash size="20" />}
                   variant="danger"
                   classes="btn-sm"
                   onClick={() => handlerDeleteCategory(item.id)}
@@ -80,6 +84,7 @@ CategoryList.propTypes = {
   change: PropTypes.string,
   handlerChangeInput: PropTypes.func,
   handlerAddCategory: PropTypes.func,
+  handlerEditCategoryChecked: PropTypes.func,
   handlerDeleteCategory: PropTypes.func
 }
 

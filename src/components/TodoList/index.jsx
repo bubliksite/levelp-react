@@ -6,7 +6,7 @@ import './style.scss'
 
 import {Link} from 'react-router-dom'
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
-import {Trash} from 'react-bootstrap-icons'
+import {Trash, CloudArrowDown} from 'react-bootstrap-icons'
 
 import Button from '../Button'
 import Input from '../Input'
@@ -55,7 +55,7 @@ const TodoList = ({
               </Link>
               <div>
                 <Button
-                  title={<Trash size="20" />}
+                  icon={<Trash size="20" />}
                   variant="danger"
                   classes="btn-sm"
                   onClick={() => handlerDeleteTodo(item.id)}
@@ -67,6 +67,12 @@ const TodoList = ({
           <Alert type="light" text="This list is empty" />
         )}
       </ListGroup>
+      <Button
+        title="Save all todo"
+        icon={<CloudArrowDown size="20" />}
+        variant="success"
+        classes="btn-sm mt-4"
+      />
     </>
   )
 }

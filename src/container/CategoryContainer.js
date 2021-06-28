@@ -2,12 +2,16 @@ import React, {useState} from 'react'
 import CategoryList from '../components/CategoryList'
 import {useSelector, useDispatch} from 'react-redux'
 import {useRouteMatch} from 'react-router-dom'
-import {actionCreateCategory, actionDeleteCategory} from '../store/categories'
+import {
+  actionCreateCategory,
+  actionDeleteCategory,
+  editCategory
+} from '../store/categories'
 
 export default function CategoryContainer() {
   const categories = useSelector((state) => state.category)
   const match = useRouteMatch('/homework/:id')
-  const todoId = +match.params.id
+  const todoId = +match?.params.id
   const dispatch = useDispatch()
   const [change, setChange] = useState('')
   const [alert, setAlert] = useState(false)
@@ -31,6 +35,13 @@ export default function CategoryContainer() {
       setAlert(true)
     }
   }
+  const handlerEditCategoryChecked = (categoryId, checked) => {
+    const data = {
+      checked: !checked,
+      id: categoryId
+    }
+    dispatch(editCategory(data))
+  }
   const handlerDeleteCategory = (id) => {
     dispatch(actionDeleteCategory(id))
   }
@@ -43,6 +54,7 @@ export default function CategoryContainer() {
       change={change}
       handlerChangeInput={handlerChangeInput}
       handlerAddCategory={handlerAddCategory}
+      handlerEditCategoryChecked={handlerEditCategoryChecked}
       handlerDeleteCategory={handlerDeleteCategory}
     />
   )

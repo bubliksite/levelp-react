@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Button as BootstrapButton} from 'react-bootstrap'
 
-function Button({onClick, title, classes, disabled, variant}) {
+function Button({onClick, icon, title, classes, disabled, variant}) {
   return (
     <BootstrapButton
       className={classes}
@@ -10,14 +10,18 @@ function Button({onClick, title, classes, disabled, variant}) {
       disabled={disabled}
       variant={variant}
     >
-      {title}
+      <span className="d-flex align-items-center">
+        <span className={icon && title ? 'mr-2' : ''}>{icon}</span>
+        {title}
+      </span>
     </BootstrapButton>
   )
 }
 
 Button.propTypes = {
   classes: PropTypes.string,
-  title: PropTypes.any,
+  title: PropTypes.string,
+  icon: PropTypes.object,
   onClick: PropTypes.func,
   disabled: PropTypes.bool
 }
