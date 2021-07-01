@@ -5,7 +5,8 @@ const initState = {
 const actionType = {
   ADD_TASK: 'ADD_TASK',
   DELETE_TASK: 'DELETE_TASK',
-  SET_TODOS: 'SET_TODOS'
+  GET_TODOS_FROM_LOCAL_STORAGE: 'GET_TODOS_FROM_LOCAL_STORAGE',
+  CLEAR_TODOS_FROM_LOCAL_STORAGE: 'CLEAR_TODOS_FROM_LOCAL_STORAGE'
 }
 
 export const actionCreateToDo = (payload) => {
@@ -22,10 +23,15 @@ export const actionDeleteTodo = (payload) => {
   }
 }
 
-export const actionSetTodo = (payload) => {
+export const actionGetTodoFromLocalStorage = (payload) => {
   return {
-    type: actionType.SET_TODOS,
+    type: actionType.GET_TODOS_FROM_LOCAL_STORAGE,
     payload
+  }
+}
+export const clearTodoFromLocalStorage = () => {
+  return {
+    type: actionType.CLEAR_TODOS_FROM_LOCAL_STORAGE
   }
 }
 
@@ -38,20 +44,12 @@ const taskReducer = (state = initState, action) => {
         ...state,
         task: state.task.filter((item) => item.id !== action.payload)
       }
-    case actionType.SET_TODOS:
+    case actionType.GET_TODOS_FROM_LOCAL_STORAGE:
       return {...state, task: [...state.task, ...action.payload]}
+    case actionType.CLEAR_TODOS_FROM_LOCAL_STORAGE:
+      return {...state, task: []}
     default:
       return state
-  }
-}
-
-export const getTodosThunk = () => (dispatch) => {
-  try {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-      .then((response) => response.json())
-      .then((json) => dispatch(actionSetTodo(json)))
-  } catch (error) {
-    console.log(error)
   }
 }
 

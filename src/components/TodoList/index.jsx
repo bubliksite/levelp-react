@@ -6,7 +6,7 @@ import './style.scss'
 
 import {Link} from 'react-router-dom'
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
-import {Trash, CloudArrowDown} from 'react-bootstrap-icons'
+import {Trash, CloudArrowDown, XCircle} from 'react-bootstrap-icons'
 
 import Button from '../Button'
 import Input from '../Input'
@@ -19,11 +19,13 @@ const TodoList = ({
   alert,
   handlerChangeInput,
   handlerAddToDo,
-  handlerDeleteTodo
+  handlerDeleteTodo,
+  saveTodoToLocalStorage,
+  removeTodoFromLocalStorage
 }) => {
   return (
     <>
-      <form className="d-flex mb-4" onSubmit={(e) => handlerAddToDo(e)}>
+      <form className="d-flex" onSubmit={(e) => handlerAddToDo(e)}>
         <div className="form-group flex-grow-1">
           <Input
             classes="form-control w-100"
@@ -41,38 +43,49 @@ const TodoList = ({
           />
         </div>
       </form>
-      {alert ? <Alert type="danger" text="This field can't be empty" /> : ''}
+      {alert.show ? <Alert type={alert.type} text={alert.message} /> : ''}
+
       <ListGroup>
-        {todos.task.length ? (
-          todos.task.map((item) => (
-            <ListGroupItem
-              className="list-group-item-action d-flex justify-content-between align-items-center"
-              variant="info"
-              key={item.id}
-            >
-              <Link to={`/homework/${item.id}`} className="pr-4 text-left">
-                {item.title}
-              </Link>
-              <div>
-                <Button
-                  icon={<Trash size="20" />}
-                  variant="danger"
-                  classes="btn-sm"
-                  onClick={() => handlerDeleteTodo(item.id)}
-                />
-              </div>
-            </ListGroupItem>
-          ))
-        ) : (
-          <Alert type="light" text="This list is empty" />
-        )}
+        {todos.task.length
+          ? todos.task.map((item) => (
+              <ListGroupItem
+                className="list-group-item-action d-flex justify-content-between align-items-center"
+                variant="info"
+                key={item.id}
+              >
+                <Link to={`/homework/${item.id}`} className="pr-4 text-left">
+                  {item.title}
+                </Link>
+                <div>
+                  <Button
+                    icon={<Trash size="20" />}
+                    variant="danger"
+                    classes="btn-sm"
+                    onClick={() => handlerDeleteTodo(item.id)}
+                  />
+                </div>
+              </ListGroupItem>
+            ))
+          : null}
       </ListGroup>
-      <Button
-        title="Save all todo"
-        icon={<CloudArrowDown size="20" />}
-        variant="success"
-        classes="btn-sm mt-4"
-      />
+      {todos.task.length ? (
+        <div>
+          <Button
+            title="Save all todo"
+            icon={<CloudArrowDown size="20" />}
+            variant="success"
+            classes="btn-sm mt-4 mr-5"
+            onClick={() => saveTodoToLocalStorage()}
+          />
+          <Button
+            title="Clear list"
+            icon={<XCircle size="20" />}
+            variant="danger"
+            classes="btn-sm mt-4"
+            onClick={() => removeTodoFromLocalStorage()}
+          />
+        </div>
+      ) : null}
     </>
   )
 }
@@ -82,6 +95,9 @@ export default TodoList
 TodoList.propTypes = {
   todos: PropTypes.object,
   change: PropTypes.string,
+  alert: PropTypes.object,
   handlerChangeInput: PropTypes.func,
-  handlerAddToDo: PropTypes.func
+  handlerAddToDo: PropTypes.func,
+  saveTodoToLocalStorage: PropTypes.func,
+  removeTodoFromLocalStorage: PropTypes.func
 }

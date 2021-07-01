@@ -1,17 +1,23 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import TodoList from '../components/TodoList'
-import {actionCreateToDo, actionDeleteTodo} from '../store/todos'
+import {
+  actionCreateToDo,
+  actionDeleteTodo,
+  actionGetTodoFromLocalStorage,
+  clearTodoFromLocalStorage
+} from '../store/todos'
 
 //Пример "умного" компонента (классовый)
 class TaskContainer extends React.Component {
   state = {
     change: '',
-    alert: false
+    alert: {show: false, message: '', type: ''}
   }
 
   handlerChangeInput = (e) => {
-    this.setState({alert: false})
+    this.setEmptyListAlert()
+    this.setState({alert: {show: false, message: '', type: ''}})
     this.setState({change: e.target.value})
   }
 
@@ -25,15 +31,70 @@ class TaskContainer extends React.Component {
       }
       this.props.handlerAddToDo(data)
       this.setState({change: ''})
+      setTimeout(() => this.saveTodoToLocalStorage(), 0)
     } else {
-      this.setState({alert: true})
+      this.setState({
+        alert: {
+          show: true,
+          message: "This field can't be empty",
+          type: 'danger'
+        }
+      })
     }
   }
 
   handlerDeleteTodo = (idTodo) => {
     this.props.handlerDeleteTodo(idTodo)
+    this.clearAlert()
+    setTimeout(() => this.saveTodoToLocalStorage(), 0)
+    setTimeout(() => this.setEmptyListAlert(), 0)
   }
 
+  setEmptyListAlert = () => {
+    if (!this.props.todos.task.length) {
+      this.setState({
+        alert: {
+          show: true,
+          message: 'The list is empty',
+          type: 'light'
+        }
+      })
+    }
+  }
+
+  clearAlert = () => {
+    this.setState({
+      alert: {
+        show: false,
+        message: '',
+        type: ''
+      }
+    })
+  }
+
+  getTodoFromLocalStorage = () => {
+    const getTodo = window.localStorage.getItem('todos')
+    if (getTodo) {
+      const {task} = JSON.parse(getTodo)
+      this.props.actionGetTodoFromLocalStorage(task)
+    }
+  }
+
+  saveTodoToLocalStorage = () => {
+    this.clearAlert()
+    window.localStorage.setItem('todos', JSON.stringify(this.props.todos))
+  }
+
+  removeTodoFromLocalStorage = () => {
+    window.localStorage.clear()
+    this.props.clearTodoFromLocalStorage()
+    setTimeout(() => this.setEmptyListAlert(), 0)
+  }
+
+  componentDidMount() {
+    this.getTodoFromLocalStorage()
+    setTimeout(() => this.setEmptyListAlert(), 0)
+  }
   render() {
     const {todos} = this.props
     const {change} = this.state
@@ -46,6 +107,8 @@ class TaskContainer extends React.Component {
         handlerChangeInput={this.handlerChangeInput}
         handlerDeleteTodo={this.handlerDeleteTodo}
         handlerAddToDo={this.handlerAddToDo}
+        saveTodoToLocalStorage={this.saveTodoToLocalStorage}
+        removeTodoFromLocalStorage={this.removeTodoFromLocalStorage}
       />
     )
   }
@@ -60,7 +123,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handlerAddToDo: (payload) => dispatch(actionCreateToDo(payload)),
-    handlerDeleteTodo: (payload) => dispatch(actionDeleteTodo(payload))
+    handlerDeleteTodo: (payload) => dispatch(actionDeleteTodo(payload)),
+    actionGetTodoFromLocalStorage: (payload) =>
+      dispatch(actionGetTodoFromLocalStorage(payload)),
+    clearTodoFromLocalStorage: () => dispatch(clearTodoFromLocalStorage())
   }
 }
 
