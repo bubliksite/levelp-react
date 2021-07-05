@@ -7,6 +7,7 @@ import {
   actionGetTodoFromLocalStorage,
   clearTodoFromLocalStorage
 } from '../store/todos'
+import {getTodo} from '../store/todos/selectors'
 
 //Пример "умного" компонента (классовый)
 class TaskContainer extends React.Component {
@@ -17,8 +18,10 @@ class TaskContainer extends React.Component {
 
   handlerChangeInput = (e) => {
     this.setEmptyListAlert()
-    this.setState({alert: {show: false, message: '', type: ''}})
-    this.setState({change: e.target.value})
+    this.setState({
+      alert: {show: false, message: '', type: ''},
+      change: e.target.value
+    })
   }
 
   handlerAddToDo = (e) => {
@@ -116,7 +119,7 @@ class TaskContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.task
+    todos: getTodo(state)
   }
 }
 

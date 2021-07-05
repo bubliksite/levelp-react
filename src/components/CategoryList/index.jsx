@@ -19,7 +19,7 @@ const CategoryList = ({
 }) => {
   return (
     <>
-      <form className="d-flex mb-4" onSubmit={(e) => handlerAddCategory(e)}>
+      <form className="d-flex" onSubmit={(e) => handlerAddCategory(e)}>
         <div className="form-group flex-grow-1">
           <Input
             classes="form-control w-100"
@@ -37,7 +37,7 @@ const CategoryList = ({
           />
         </div>
       </form>
-      {alert ? <Alert type="danger" text="This field can't be empty" /> : ''}
+      {alert.show ? <Alert type={alert.type} text={alert.message} /> : ''}
       <ListGroup>
         {categories.category.map((item) => {
           return item.todoId === todoId ? (
@@ -80,7 +80,7 @@ const CategoryList = ({
 CategoryList.propTypes = {
   categories: PropTypes.object,
   todoId: PropTypes.number,
-  alert: PropTypes.bool,
+  alert: PropTypes.object,
   change: PropTypes.string,
   handlerChangeInput: PropTypes.func,
   handlerAddCategory: PropTypes.func,
