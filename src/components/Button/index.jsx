@@ -11,7 +11,13 @@ function Button({onClick, icon, title, classes, disabled, variant}) {
       variant={variant}
     >
       <span className="d-flex align-items-center">
-        <span className={icon && title ? 'mr-2' : ''}>{icon}</span>
+        <span
+          className={
+            (icon && title ? 'mr-2' : '') + ' d-flex align-item-center'
+          }
+        >
+          {icon}
+        </span>
         {title}
       </span>
     </BootstrapButton>

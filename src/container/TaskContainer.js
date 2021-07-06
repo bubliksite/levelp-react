@@ -8,6 +8,7 @@ import {
   clearTodoFromLocalStorage
 } from '../store/todos'
 import {getTodo} from '../store/todos/selectors'
+import {actionShowModal} from '../store/modals'
 
 //Пример "умного" компонента (классовый)
 class TaskContainer extends React.Component {
@@ -46,11 +47,16 @@ class TaskContainer extends React.Component {
     }
   }
 
-  handlerDeleteTodo = (idTodo) => {
-    this.props.handlerDeleteTodo(idTodo)
-    this.clearAlert()
-    setTimeout(() => this.saveTodoToLocalStorage(), 0)
-    setTimeout(() => this.setEmptyListAlert(), 0)
+  handlerDeleteTodo = (idTodo, titleTodo) => {
+    // this.props.handlerDeleteTodo(idTodo)
+    // this.clearAlert()
+    // setTimeout(() => this.saveTodoToLocalStorage(), 0)
+    // setTimeout(() => this.setEmptyListAlert(), 0)
+    this.props.actionModalDelete({
+      name: 'modalDelete',
+      id: idTodo,
+      title: titleTodo
+    })
   }
 
   setEmptyListAlert = () => {
@@ -107,6 +113,7 @@ class TaskContainer extends React.Component {
         todos={todos}
         change={change}
         alert={alert}
+        actionModalDelete={this.props.actionModalDelete}
         handlerChangeInput={this.handlerChangeInput}
         handlerDeleteTodo={this.handlerDeleteTodo}
         handlerAddToDo={this.handlerAddToDo}
@@ -129,7 +136,8 @@ const mapDispatchToProps = (dispatch) => {
     handlerDeleteTodo: (payload) => dispatch(actionDeleteTodo(payload)),
     actionGetTodoFromLocalStorage: (payload) =>
       dispatch(actionGetTodoFromLocalStorage(payload)),
-    clearTodoFromLocalStorage: () => dispatch(clearTodoFromLocalStorage())
+    clearTodoFromLocalStorage: () => dispatch(clearTodoFromLocalStorage()),
+    actionModalDelete: (payload) => dispatch(actionShowModal(payload))
   }
 }
 

@@ -8,7 +8,7 @@ import {Trash, CheckSquare, Square} from 'react-bootstrap-icons'
 import PropTypes from 'prop-types'
 
 const CategoryList = ({
-  categories,
+  category,
   todoId,
   alert,
   change,
@@ -39,7 +39,7 @@ const CategoryList = ({
       </form>
       {alert.show ? <Alert type={alert.type} text={alert.message} /> : ''}
       <ListGroup>
-        {categories.category.map((item) => {
+        {category.map((item) => {
           return item.todoId === todoId ? (
             <ListGroupItem
               className="list-group-item-action d-flex justify-content-between align-items-center"
@@ -78,7 +78,7 @@ const CategoryList = ({
 }
 
 CategoryList.propTypes = {
-  categories: PropTypes.object,
+  category: PropTypes.array,
   todoId: PropTypes.number,
   alert: PropTypes.object,
   change: PropTypes.string,

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import CategoryList from '../components/CategoryList'
 import {useSelector, useDispatch} from 'react-redux'
-import {useRouteMatch} from 'react-router-dom'
+import {useRouteMatch, useLocation} from 'react-router-dom'
 import {
   actionCreateCategory,
   actionDeleteCategory,
@@ -10,7 +10,14 @@ import {
 import {getCategory} from '../store/categories/selectors'
 
 export default function CategoryContainer() {
-  const categories = useSelector((state) => getCategory(state))
+  const {category} = useSelector((state) => getCategory(state))
+  const location = useLocation()
+  const getValueSearch = new URLSearchParams(location.search).get('search')
+  const filterCategoryTitle = getValueSearch
+    ? category.filter((item) =>
+        item.title.toLowerCase().includes(getValueSearch.toLowerCase())
+      )
+    : category
   const match = useRouteMatch('/homework/:id')
   const todoId = +match?.params.id
   const dispatch = useDispatch()
@@ -53,7 +60,7 @@ export default function CategoryContainer() {
 
   return (
     <CategoryList
-      categories={categories}
+      category={filterCategoryTitle}
       todoId={todoId}
       alert={alert}
       change={change}

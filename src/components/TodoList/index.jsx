@@ -61,7 +61,7 @@ const TodoList = ({
                     icon={<Trash size="20" />}
                     variant="danger"
                     classes="btn-sm"
-                    onClick={() => handlerDeleteTodo(item.id)}
+                    onClick={() => handlerDeleteTodo(item.id, item.title)}
                   />
                 </div>
               </ListGroupItem>
