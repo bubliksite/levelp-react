@@ -3,8 +3,12 @@
 .list-group-item-warning {
   a {
     color: $color-text-warning;
+    word-break: break-all;
   }
   button.btn-link {
     @extend a;
+  }
+  .text-decoration-line-through {
+    text-decoration: line-through;
   }
 }

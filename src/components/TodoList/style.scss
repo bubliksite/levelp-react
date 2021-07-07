@@ -3,11 +3,13 @@
 .list-group-item-info {
   a {
     color: $color-text-info;
+    word-break: break-all;
   }
 }
 
 .list-group-item-secondary {
   a {
     color: $color-text-secondary;
+    word-break: break-all;
   }
 }

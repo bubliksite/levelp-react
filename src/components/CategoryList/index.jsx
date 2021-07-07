@@ -4,7 +4,7 @@ import Input from '../Input'
 import Button from '../Button'
 import Alert from '../Alert'
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
-import {Trash, CheckSquare, Square} from 'react-bootstrap-icons'
+import {Trash, CheckSquare, Square, PencilSquare} from 'react-bootstrap-icons'
 import PropTypes from 'prop-types'
 
 const CategoryList = ({
@@ -46,7 +46,6 @@ const CategoryList = ({
               variant="warning"
               key={item.id}
             >
-              <div>{item.title}</div>
               <div>
                 <Button
                   icon={
@@ -57,10 +56,22 @@ const CategoryList = ({
                     )
                   }
                   variant="link"
-                  classes="btn-sm mr-2"
+                  classes="btn-sm mr-2 p-0"
                   onClick={() =>
                     handlerEditCategoryChecked(item.id, item.checked)
                   }
+                />
+                <span
+                  className={item.checked ? 'text-decoration-line-through' : ''}
+                >
+                  {item.title}
+                </span>
+              </div>
+              <div>
+                <Button
+                  icon={<PencilSquare size="20" />}
+                  variant="link"
+                  classes="btn-sm mr-2 text-body"
                 />
                 <Button
                   icon={<Trash size="20" />}

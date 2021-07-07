@@ -20,6 +20,13 @@ export default function ModalDelete({id, title}) {
     <>
       <div className="modal-back">
         <div className="card">
+          <div
+            className="close-icon text-white"
+            role="button"
+            onClick={handlerHideModal}
+          >
+            <XCircle size="30" />
+          </div>
           <div className="card-header text-white bg-info">Delete item?</div>
           <div className="card-body">
             <p className="card-text">Do you want to delete item "{title}" ?</p>

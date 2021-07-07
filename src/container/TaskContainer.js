@@ -35,7 +35,6 @@ class TaskContainer extends React.Component {
       }
       this.props.handlerAddToDo(data)
       this.setState({change: ''})
-      setTimeout(() => this.saveTodoToLocalStorage(), 0)
     } else {
       this.setState({
         alert: {
@@ -48,7 +47,7 @@ class TaskContainer extends React.Component {
   }
 
   handlerDeleteTodo = (idTodo, titleTodo) => {
-    this.props.actionModalDelete({
+    this.props.actionShowModal({
       name: 'modalDelete',
       id: idTodo,
       title: titleTodo
@@ -58,7 +57,6 @@ class TaskContainer extends React.Component {
   removeTodoFromLocalStorage = () => {
     window.localStorage.clear()
     this.props.actionClearTodoFromLocalStorage()
-    setTimeout(() => this.setEmptyListAlert(), 0)
   }
 
   saveTodoToLocalStorage = () => {
@@ -71,6 +69,13 @@ class TaskContainer extends React.Component {
       const {task} = JSON.parse(getTodo)
       this.props.actionGetTodoFromLocalStorage(task)
     }
+  }
+
+  showModalEditTask = (taskId) => {
+    this.props.actionShowModal({
+      name: 'modalEditTask',
+      id: taskId
+    })
   }
 
   setEmptyListAlert = () => {
@@ -87,7 +92,6 @@ class TaskContainer extends React.Component {
 
   componentDidMount() {
     this.getTodoFromLocalStorage()
-    setTimeout(() => this.setEmptyListAlert(), 0)
   }
   render() {
     const {todos} = this.props
@@ -98,10 +102,11 @@ class TaskContainer extends React.Component {
         todos={todos}
         change={change}
         alert={alert}
-        actionModalDelete={this.props.actionModalDelete}
+        actionShowModal={this.props.actionShowModal}
         handlerChangeInput={this.handlerChangeInput}
         handlerDeleteTodo={this.handlerDeleteTodo}
         handlerAddToDo={this.handlerAddToDo}
+        showModalEditTask={this.showModalEditTask}
         saveTodoToLocalStorage={this.saveTodoToLocalStorage}
         removeTodoFromLocalStorage={this.removeTodoFromLocalStorage}
       />
@@ -123,7 +128,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionGetTodoFromLocalStorage(payload)),
     actionClearTodoFromLocalStorage: () =>
       dispatch(actionClearTodoFromLocalStorage()),
-    actionModalDelete: (payload) => dispatch(actionShowModal(payload))
+    actionShowModal: (payload) => dispatch(actionShowModal(payload))
   }
 }
 

@@ -6,7 +6,7 @@ import './style.scss'
 
 import {Link} from 'react-router-dom'
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
-import {Trash, CloudArrowDown, XCircle} from 'react-bootstrap-icons'
+import {Trash, Check2Circle, XCircle, PencilSquare} from 'react-bootstrap-icons'
 
 import Button from '../Button'
 import Input from '../Input'
@@ -21,7 +21,8 @@ const TodoList = ({
   handlerAddToDo,
   handlerDeleteTodo,
   saveTodoToLocalStorage,
-  removeTodoFromLocalStorage
+  removeTodoFromLocalStorage,
+  showModalEditTask
 }) => {
   return (
     <>
@@ -58,6 +59,12 @@ const TodoList = ({
                 </Link>
                 <div>
                   <Button
+                    icon={<PencilSquare size="20" />}
+                    variant="link"
+                    classes="btn-sm mr-2 text-body"
+                    onClick={() => showModalEditTask(item.id)}
+                  />
+                  <Button
                     icon={<Trash size="20" />}
                     variant="danger"
                     classes="btn-sm"
@@ -68,24 +75,23 @@ const TodoList = ({
             ))
           : null}
       </ListGroup>
-      {todos.task.length ? (
-        <div>
-          <Button
-            title="Save all todo"
-            icon={<CloudArrowDown size="20" />}
-            variant="success"
-            classes="btn-sm mt-4 mr-5"
-            onClick={() => saveTodoToLocalStorage()}
-          />
-          <Button
-            title="Clear list"
-            icon={<XCircle size="20" />}
-            variant="danger"
-            classes="btn-sm mt-4"
-            onClick={() => removeTodoFromLocalStorage()}
-          />
-        </div>
-      ) : null}
+      <div className="d-flex justify-content-around">
+        <Button
+          title="Save"
+          icon={<Check2Circle size="20" />}
+          variant="success"
+          classes="btn-sm mt-4"
+          onClick={() => saveTodoToLocalStorage()}
+        />
+        <Button
+          title="Clear"
+          icon={<XCircle size="20" />}
+          variant="danger"
+          disabled={!todos.task.length}
+          classes="btn-sm mt-4"
+          onClick={() => removeTodoFromLocalStorage()}
+        />
+      </div>
     </>
   )
 }
@@ -98,6 +104,8 @@ TodoList.propTypes = {
   alert: PropTypes.object,
   handlerChangeInput: PropTypes.func,
   handlerAddToDo: PropTypes.func,
+  handlerDeleteTodo: PropTypes.func,
   saveTodoToLocalStorage: PropTypes.func,
-  removeTodoFromLocalStorage: PropTypes.func
+  removeTodoFromLocalStorage: PropTypes.func,
+  showModalEditTask: PropTypes.func
 }
