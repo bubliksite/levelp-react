@@ -5,7 +5,7 @@ import {
   actionCreateToDo,
   actionDeleteTodo,
   actionGetTodoFromLocalStorage,
-  clearTodoFromLocalStorage
+  actionClearTodoFromLocalStorage
 } from '../store/todos'
 import {getTodo} from '../store/todos/selectors'
 import {actionShowModal} from '../store/modals'
@@ -48,15 +48,29 @@ class TaskContainer extends React.Component {
   }
 
   handlerDeleteTodo = (idTodo, titleTodo) => {
-    // this.props.handlerDeleteTodo(idTodo)
-    // this.clearAlert()
-    // setTimeout(() => this.saveTodoToLocalStorage(), 0)
-    // setTimeout(() => this.setEmptyListAlert(), 0)
     this.props.actionModalDelete({
       name: 'modalDelete',
       id: idTodo,
       title: titleTodo
     })
+  }
+
+  removeTodoFromLocalStorage = () => {
+    window.localStorage.clear()
+    this.props.actionClearTodoFromLocalStorage()
+    setTimeout(() => this.setEmptyListAlert(), 0)
+  }
+
+  saveTodoToLocalStorage = () => {
+    window.localStorage.setItem('todos', JSON.stringify(this.props.todos))
+  }
+
+  getTodoFromLocalStorage = () => {
+    const getTodo = window.localStorage.getItem('todos')
+    if (getTodo) {
+      const {task} = JSON.parse(getTodo)
+      this.props.actionGetTodoFromLocalStorage(task)
+    }
   }
 
   setEmptyListAlert = () => {
@@ -69,35 +83,6 @@ class TaskContainer extends React.Component {
         }
       })
     }
-  }
-
-  clearAlert = () => {
-    this.setState({
-      alert: {
-        show: false,
-        message: '',
-        type: ''
-      }
-    })
-  }
-
-  getTodoFromLocalStorage = () => {
-    const getTodo = window.localStorage.getItem('todos')
-    if (getTodo) {
-      const {task} = JSON.parse(getTodo)
-      this.props.actionGetTodoFromLocalStorage(task)
-    }
-  }
-
-  saveTodoToLocalStorage = () => {
-    this.clearAlert()
-    window.localStorage.setItem('todos', JSON.stringify(this.props.todos))
-  }
-
-  removeTodoFromLocalStorage = () => {
-    window.localStorage.clear()
-    this.props.clearTodoFromLocalStorage()
-    setTimeout(() => this.setEmptyListAlert(), 0)
   }
 
   componentDidMount() {
@@ -136,7 +121,8 @@ const mapDispatchToProps = (dispatch) => {
     handlerDeleteTodo: (payload) => dispatch(actionDeleteTodo(payload)),
     actionGetTodoFromLocalStorage: (payload) =>
       dispatch(actionGetTodoFromLocalStorage(payload)),
-    clearTodoFromLocalStorage: () => dispatch(clearTodoFromLocalStorage()),
+    actionClearTodoFromLocalStorage: () =>
+      dispatch(actionClearTodoFromLocalStorage()),
     actionModalDelete: (payload) => dispatch(actionShowModal(payload))
   }
 }

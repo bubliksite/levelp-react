@@ -29,7 +29,8 @@ export const actionGetTodoFromLocalStorage = (payload) => {
     payload
   }
 }
-export const clearTodoFromLocalStorage = () => {
+
+export const actionClearTodoFromLocalStorage = () => {
   return {
     type: actionType.CLEAR_TODOS_FROM_LOCAL_STORAGE
   }
