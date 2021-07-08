@@ -2,10 +2,12 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 import ModalDelete from './ModalDelete'
 import ModalEditTaskContainer from '../../container/ModalEditTaskContainer'
+import ModalEditCategoryContainer from '../../container/ModalEditCategoryContainer'
 
 const modalCollections = {
   modalDelete: ModalDelete,
-  modalEditTask: ModalEditTaskContainer
+  modalEditTask: ModalEditTaskContainer,
+  modalEditCategory: ModalEditCategoryContainer
 }
 
 export default function Modals() {

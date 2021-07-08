@@ -5,6 +5,7 @@ const initState = {
 const actionType = {
   ADD_TASK: 'ADD_TASK',
   DELETE_TASK: 'DELETE_TASK',
+  EDIT_TASK: 'EDIT_TASK',
   GET_TODOS_FROM_LOCAL_STORAGE: 'GET_TODOS_FROM_LOCAL_STORAGE',
   CLEAR_TODOS_FROM_LOCAL_STORAGE: 'CLEAR_TODOS_FROM_LOCAL_STORAGE'
 }
@@ -19,6 +20,13 @@ export const actionCreateToDo = (payload) => {
 export const actionDeleteTodo = (payload) => {
   return {
     type: actionType.DELETE_TASK,
+    payload
+  }
+}
+
+export const actionEditTodo = (payload) => {
+  return {
+    type: actionType.EDIT_TASK,
     payload
   }
 }
@@ -44,6 +52,15 @@ const taskReducer = (state = initState, action) => {
       return {
         ...state,
         task: state.task.filter((item) => item.id !== action.payload)
+      }
+    case actionType.EDIT_TASK:
+      return {
+        ...state,
+        task: state.task.map((item) =>
+          item.id === action.payload.id
+            ? {...item, title: action.payload.title}
+            : item
+        )
       }
     case actionType.GET_TODOS_FROM_LOCAL_STORAGE:
       return {...state, task: [...state.task, ...action.payload]}

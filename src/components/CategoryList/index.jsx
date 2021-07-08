@@ -15,7 +15,8 @@ const CategoryList = ({
   handlerChangeInput,
   handlerAddCategory,
   handlerEditCategoryChecked,
-  handlerDeleteCategory
+  handlerDeleteCategory,
+  showModalEditCategory
 }) => {
   return (
     <>
@@ -72,6 +73,9 @@ const CategoryList = ({
                   icon={<PencilSquare size="20" />}
                   variant="link"
                   classes="btn-sm mr-2 text-body"
+                  onClick={() =>
+                    showModalEditCategory(item.id, item.title, item.todoId)
+                  }
                 />
                 <Button
                   icon={<Trash size="20" />}

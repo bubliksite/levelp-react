@@ -1,5 +1,11 @@
 @import '../../styles/variables';
 
+.list-group-item.active {
+  a {
+    color: white;
+  }
+}
+
 .list-group-item-info {
   a {
     color: $color-text-info;

@@ -5,9 +5,10 @@ import {useRouteMatch, useLocation} from 'react-router-dom'
 import {
   actionCreateCategory,
   actionDeleteCategory,
-  editCategory
+  actionEditCheckCategory
 } from '../store/categories'
 import {getCategory} from '../store/categories/selectors'
+import {actionShowModal} from '../store/modals'
 
 export default function CategoryContainer() {
   const {category} = useSelector((state) => getCategory(state))
@@ -52,10 +53,26 @@ export default function CategoryContainer() {
       checked: !checked,
       id: categoryId
     }
-    dispatch(editCategory(data))
+    dispatch(actionEditCheckCategory(data))
   }
+
   const handlerDeleteCategory = (id) => {
     dispatch(actionDeleteCategory(id))
+  }
+
+  const saveCategoriesToLocalStorage = () => {
+    window.localStorage.setItem('categories', JSON.stringify(category))
+  }
+
+  const showModalEditCategory = (categoryId, categoryTitle, todoId) => {
+    dispatch(
+      actionShowModal({
+        name: 'modalEditCategory',
+        categoryId,
+        categoryTitle,
+        todoId
+      })
+    )
   }
 
   return (
@@ -68,6 +85,8 @@ export default function CategoryContainer() {
       handlerAddCategory={handlerAddCategory}
       handlerEditCategoryChecked={handlerEditCategoryChecked}
       handlerDeleteCategory={handlerDeleteCategory}
+      saveCategoriesToLocalStorage={saveCategoriesToLocalStorage}
+      showModalEditCategory={showModalEditCategory}
     />
   )
 }

@@ -11,7 +11,8 @@ export const HomePage = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/homework" component={Homework} />
+      <Route path="/homework" exact component={Homework} />
+      <Route path="/homework/:id" exact component={Homework} />
       <Route path="/user" component={User} />
       <Route path="/settings" component={Settings} />
       <Route path="/profile" component={Profile} />

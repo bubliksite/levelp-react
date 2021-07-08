@@ -9,6 +9,7 @@ import {
 } from '../store/todos'
 import {getTodo} from '../store/todos/selectors'
 import {actionShowModal} from '../store/modals'
+import {getCategory} from '../store/categories/selectors'
 
 //Пример "умного" компонента (классовый)
 class TaskContainer extends React.Component {
@@ -92,14 +93,17 @@ class TaskContainer extends React.Component {
 
   componentDidMount() {
     this.getTodoFromLocalStorage()
+    console.log(this.props)
   }
   render() {
     const {todos} = this.props
+    const {categories} = this.props
     const {change} = this.state
     const {alert} = this.state
     return (
       <TodoList
         todos={todos}
+        categories={categories}
         change={change}
         alert={alert}
         actionShowModal={this.props.actionShowModal}
@@ -116,7 +120,8 @@ class TaskContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    todos: getTodo(state)
+    todos: getTodo(state),
+    categories: getCategory(state)
   }
 }
 

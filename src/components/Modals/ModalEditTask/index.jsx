@@ -7,7 +7,8 @@ export default function ModalEditTask({
   title,
   value,
   handlerHideModal,
-  handlerChangeInput
+  handlerChangeInput,
+  handlerEditTask
 }) {
   return (
     <>
@@ -21,24 +22,26 @@ export default function ModalEditTask({
             <XCircle size="30" />
           </div>
           <div className="card-header text-white bg-info">
-            Editing "{title}"
+            Editing item "{title}"
           </div>
           <div className="card-body">
-            <p className="card-text py-3">
-              <label className="float-left">Input new title of task</label>
-              <Input
-                classes="w-100 form-control"
-                value={value}
-                onChange={(e) => handlerChangeInput(e)}
-              />
-            </p>
+            <div className="card-text py-3">
+              <form onSubmit={handlerEditTask}>
+                <label className="float-left">Input new title of task</label>
+                <Input
+                  classes="w-100 form-control"
+                  value={value}
+                  onChange={(e) => handlerChangeInput(e)}
+                />
+              </form>
+            </div>
             <div className="d-flex w-100 justify-content-end">
               <Button
                 icon={<Check2Circle size="20" />}
                 title="Save"
                 variant="success"
                 classes="mr-3"
-                //onClick={handlerEditTask}
+                onClick={handlerEditTask}
               />
               <Button
                 icon={<XCircle size="20" />}
