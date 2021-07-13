@@ -74,7 +74,12 @@ const CategoryList = ({
                   variant="link"
                   classes="btn-sm mr-2 text-body"
                   onClick={() =>
-                    showModalEditCategory(item.id, item.title, item.todoId)
+                    showModalEditCategory(
+                      item.id,
+                      item.title,
+                      item.todoId,
+                      item.checked
+                    )
                   }
                 />
                 <Button

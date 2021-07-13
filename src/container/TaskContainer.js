@@ -93,7 +93,6 @@ class TaskContainer extends React.Component {
 
   componentDidMount() {
     this.getTodoFromLocalStorage()
-    console.log(this.props)
   }
   render() {
     const {todos} = this.props

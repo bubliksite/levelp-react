@@ -1,6 +1,7 @@
 @import '~bootstrap';
 
 body {
+  overflow-x: hidden;
   @extend .bg-light;
 }
 

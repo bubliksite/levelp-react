@@ -22,7 +22,7 @@ export default function ModalEditTask({
             <XCircle size="30" />
           </div>
           <div className="card-header text-white bg-info">
-            Editing item "{title}"
+            Editing item <b>{title}</b>
           </div>
           <div className="card-body">
             <div className="card-text py-3">

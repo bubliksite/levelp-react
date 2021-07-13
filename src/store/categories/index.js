@@ -48,9 +48,11 @@ export const actionEditCategory = (payload) => {
 const categoryReducer = (state = initState, action) => {
   switch (action.type) {
     case actionType.ADD_CATEGORY:
+      //Добавляем объект
       return {state, category: [action.payload, ...state.category]}
     case actionType.EDIT_CHECKED_CATEGORY:
       return {
+        //Меняем одно свойтво объекта
         ...state,
         category: state.category.map((item) =>
           item.id === action.payload.id
@@ -59,15 +61,17 @@ const categoryReducer = (state = initState, action) => {
         )
       }
     case actionType.EDIT_CATEGORY:
+      //Меняем весь объект
       return {
         ...state,
         category: state.category.map((item) =>
-          item.id === action.payload.id
-            ? {...item, checked: action.payload.checked}
+          item.id === action.payload.categoryId
+            ? {...item, ...action.payload}
             : item
         )
       }
     case actionType.TRANSFER_CATEGORY:
+      //Меняем одно свойтво объекта
       return {
         ...state,
         category: state.category.map((item) =>
@@ -78,6 +82,7 @@ const categoryReducer = (state = initState, action) => {
       }
     case actionType.DELETE_CATEGORY:
       return {
+        //Удаляем объект
         ...state,
         category: state.category.filter((item) => item.id !== action.payload)
       }

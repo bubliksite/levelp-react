@@ -35,6 +35,7 @@ export default function CategoryContainer() {
       const data = {
         id: Date.now(),
         title: change,
+        description: '',
         checked: false,
         todoId
       }
@@ -64,13 +65,19 @@ export default function CategoryContainer() {
     window.localStorage.setItem('categories', JSON.stringify(category))
   }
 
-  const showModalEditCategory = (categoryId, categoryTitle, todoId) => {
+  const showModalEditCategory = (
+    categoryId,
+    categoryTitle,
+    todoId,
+    checked
+  ) => {
     dispatch(
       actionShowModal({
         name: 'modalEditCategory',
         categoryId,
         categoryTitle,
-        todoId
+        todoId,
+        checked
       })
     )
   }
