@@ -1,15 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import TodoList from '../components/TodoList'
+
+import TodoList from '../components/TaskList'
 import {
   actionCreateToDo,
   actionDeleteTodo,
   actionGetTodoFromLocalStorage,
   actionClearTodoFromLocalStorage
 } from '../store/todos'
-import {getTodo} from '../store/todos/selectors'
 import {actionShowModal} from '../store/modals'
+import {getTodo} from '../store/todos/selectors'
 import {getCategory} from '../store/categories/selectors'
+
+const enums = {
+  todoKeyLS: 'todos'
+}
 
 //Пример "умного" компонента (классовый)
 class TaskContainer extends React.Component {
@@ -61,11 +66,14 @@ class TaskContainer extends React.Component {
   }
 
   saveTodoToLocalStorage = () => {
-    window.localStorage.setItem('todos', JSON.stringify(this.props.todos))
+    window.localStorage.setItem(
+      enums.todoKeyLS,
+      JSON.stringify(this.props.todos)
+    )
   }
 
   getTodoFromLocalStorage = () => {
-    const getTodo = window.localStorage.getItem('todos')
+    const getTodo = window.localStorage.getItem(enums.todoKeyLS)
     if (getTodo) {
       const {task} = JSON.parse(getTodo)
       this.props.actionGetTodoFromLocalStorage(task)

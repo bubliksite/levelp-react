@@ -1,6 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import {Button as BootstrapButton} from 'react-bootstrap'
+
+import PropTypes from 'prop-types'
 
 function Button({onClick, icon, title, classes, disabled, variant}) {
   return (
@@ -27,6 +29,7 @@ function Button({onClick, icon, title, classes, disabled, variant}) {
 Button.propTypes = {
   classes: PropTypes.string,
   title: PropTypes.string,
+  variant: PropTypes.string,
   icon: PropTypes.object,
   onClick: PropTypes.func,
   disabled: PropTypes.bool

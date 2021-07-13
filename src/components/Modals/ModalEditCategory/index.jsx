@@ -1,9 +1,13 @@
 import React from 'react'
+
 import './style.scss'
 import {Check2Circle, CheckSquare, Square, XCircle} from 'react-bootstrap-icons'
+
 import Button from '../../Button'
 import Input from '../../Input'
-import TodoList from '../../TodoList'
+import TodoList from '../../TaskList'
+
+import PropTypes from 'prop-types'
 
 export default function ModalEditCategory({
   name,
@@ -106,4 +110,21 @@ export default function ModalEditCategory({
       </div>
     </>
   )
+}
+
+ModalEditCategory.propTypes = {
+  name: PropTypes.string,
+  todoId: PropTypes.number,
+  id: PropTypes.number,
+  todos: PropTypes.object,
+  check: PropTypes.bool,
+  descript: PropTypes.string,
+  title: PropTypes.string,
+  value: PropTypes.string,
+  updateCategory: PropTypes.func,
+  handlerHideModal: PropTypes.func,
+  handlerTransferCategory: PropTypes.func,
+  handlerChangeTitle: PropTypes.func,
+  handlerChangeChecked: PropTypes.func,
+  handlerChangeDescription: PropTypes.func
 }

@@ -1,11 +1,16 @@
 import React, {useState} from 'react'
-import ModalEditCategory from '../components/Modals/ModalEditCategory'
-import {actionHideModal} from '../store/modals'
+
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
-import {getTodo} from '../store/todos/selectors'
+
+import ModalEditCategory from '../components/Modals/ModalEditCategory'
+
+import {actionHideModal} from '../store/modals'
 import {actionEditCategory, actionTransferCategory} from '../store/categories'
+import {getTodo} from '../store/todos/selectors'
 import {getCategory} from '../store/categories/selectors'
+
+import {homework} from '../mockData'
 
 export default function ModalEditCategoryContainer({name, categoryId}) {
   const todos = useSelector((state) => getTodo(state))
@@ -34,7 +39,7 @@ export default function ModalEditCategoryContainer({name, categoryId}) {
       categoryId
     }
     dispatch(actionTransferCategory(data))
-    history.push(`/homework/${taskId}`)
+    history.push(homework.todoId(taskId))
   }
   const handlerHideModal = () => {
     dispatch(actionHideModal())
@@ -50,7 +55,6 @@ export default function ModalEditCategoryContainer({name, categoryId}) {
 
   const handlerChangeDescription = (e) => {
     setDescript(e.target.value)
-    console.log(descript)
   }
 
   return (

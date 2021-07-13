@@ -1,10 +1,13 @@
 import React from 'react'
 import './style.scss'
+
+import {ListGroup, ListGroupItem} from 'react-bootstrap'
+import {Trash, CheckSquare, Square, PencilSquare} from 'react-bootstrap-icons'
+
 import Input from '../Input'
 import Button from '../Button'
 import Alert from '../Alert'
-import {ListGroup, ListGroupItem} from 'react-bootstrap'
-import {Trash, CheckSquare, Square, PencilSquare} from 'react-bootstrap-icons'
+
 import PropTypes from 'prop-types'
 
 const CategoryList = ({
@@ -98,14 +101,15 @@ const CategoryList = ({
 }
 
 CategoryList.propTypes = {
-  category: PropTypes.array,
   todoId: PropTypes.number,
-  alert: PropTypes.object,
   change: PropTypes.string,
+  alert: PropTypes.object,
+  category: PropTypes.array,
   handlerChangeInput: PropTypes.func,
   handlerAddCategory: PropTypes.func,
   handlerEditCategoryChecked: PropTypes.func,
-  handlerDeleteCategory: PropTypes.func
+  handlerDeleteCategory: PropTypes.func,
+  showModalEditCategory: PropTypes.func
 }
 
 export default CategoryList

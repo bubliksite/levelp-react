@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
+
 import Input from '../Input'
 
 export default function SearchCategory() {

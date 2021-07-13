@@ -1,7 +1,10 @@
 import React, {useState} from 'react'
-import CategoryList from '../components/CategoryList'
+
 import {useSelector, useDispatch} from 'react-redux'
 import {useRouteMatch, useLocation} from 'react-router-dom'
+
+import CategoryList from '../components/CategoryList'
+
 import {
   actionCreateCategory,
   actionDeleteCategory,
@@ -9,6 +12,8 @@ import {
 } from '../store/categories'
 import {getCategory} from '../store/categories/selectors'
 import {actionShowModal} from '../store/modals'
+
+import {homework} from '../mockData'
 
 export default function CategoryContainer() {
   const {category} = useSelector((state) => getCategory(state))
@@ -19,7 +24,7 @@ export default function CategoryContainer() {
         item.title.toLowerCase().includes(getValueSearch.toLowerCase())
       )
     : category
-  const match = useRouteMatch('/homework/:id')
+  const match = useRouteMatch(homework.useParams())
   const todoId = +match?.params.id
   const dispatch = useDispatch()
   const [change, setChange] = useState('')

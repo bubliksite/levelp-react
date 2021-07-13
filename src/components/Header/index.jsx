@@ -1,9 +1,10 @@
 import React from 'react'
 import './style.scss'
 import {NavLink} from 'react-router-dom'
+import PropTypes from 'prop-types'
+import CategoryList from '../CategoryList'
 
-function Header(props) {
-  const {title} = props
+function Header({title}) {
   return (
     <header className="mb-4">
       <h2 className="py-3">{title}</h2>
@@ -32,3 +33,7 @@ function Header(props) {
 }
 
 export default Header
+
+CategoryList.propTypes = {
+  title: PropTypes.string
+}

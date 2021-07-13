@@ -1,7 +1,12 @@
 import React from 'react'
+
 import {Check2Circle, XCircle} from 'react-bootstrap-icons'
+
 import Button from '../../Button'
 import Input from '../../Input'
+import CategoryList from '../../CategoryList'
+
+import PropTypes from 'prop-types'
 
 export default function ModalEditTask({
   title,
@@ -55,4 +60,12 @@ export default function ModalEditTask({
       </div>
     </>
   )
+}
+
+CategoryList.propTypes = {
+  title: PropTypes.string,
+  value: PropTypes.string,
+  handlerHideModal: PropTypes.func,
+  handlerChangeInput: PropTypes.func,
+  handlerEditTask: PropTypes.func
 }

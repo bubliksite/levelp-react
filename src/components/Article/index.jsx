@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react'
+
 import Spinner from '../Spinner'
 import Button from '../Button'
+import Alert from '../Alert'
 
-function Article(props) {
-  const {isShow} = props
+import PropTypes from 'prop-types'
+
+function Article({isShow}) {
   const [data, setData] = useState([])
   useEffect(() => {
     setTimeout(() => {
@@ -52,3 +55,7 @@ function Article(props) {
 }
 
 export default Article
+
+Alert.propTypes = {
+  isShow: PropTypes.bool
+}

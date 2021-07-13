@@ -1,9 +1,12 @@
 import React, {useState} from 'react'
-import ModalEditTask from '../components/Modals/ModalEditTask'
 import {useDispatch, useSelector} from 'react-redux'
-import {actionHideModal} from '../store/modals'
-import {getTodo} from '../store/todos/selectors'
+
+import ModalEditTask from '../components/Modals/ModalEditTask'
+
 import {actionEditTodo} from '../store/todos'
+import {actionHideModal} from '../store/modals'
+
+import {getTodo} from '../store/todos/selectors'
 
 export default function ModalEditTaskContainer({id}) {
   const {task} = useSelector((state) => getTodo(state))

@@ -1,6 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import {ProgressBar as ProgressBarBootstrap} from 'react-bootstrap'
+
+import PropTypes from 'prop-types'
 
 const ProgressBar = ({completedCategory}) => {
   return (
@@ -15,8 +17,8 @@ const ProgressBar = ({completedCategory}) => {
   )
 }
 
+export default ProgressBar
+
 ProgressBar.propTypes = {
   completedCategory: PropTypes.number
 }
-
-export default ProgressBar

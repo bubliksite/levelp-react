@@ -1,6 +1,8 @@
 import React, {useMemo} from 'react'
-import ProgressBar from '../components/ProgressBar'
 import {useSelector} from 'react-redux'
+
+import ProgressBar from '../components/ProgressBar'
+
 import {getCategory} from '../store/categories/selectors'
 
 export default function ProgressBarContainer() {

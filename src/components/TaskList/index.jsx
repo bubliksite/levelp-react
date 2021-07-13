@@ -1,8 +1,5 @@
 import React, {useState} from 'react'
-import './style.scss'
-import PropTypes from 'prop-types'
 import {useRouteMatch} from 'react-router-dom'
-
 import './style.scss'
 
 import {Link} from 'react-router-dom'
@@ -20,9 +17,12 @@ import Button from '../Button'
 import Input from '../Input'
 import Alert from '../Alert'
 
+import {homework} from '../../mockData'
+
+import PropTypes from 'prop-types'
 //Пример "глупого" компонента
 
-const TodoList = ({
+const TaskList = ({
   todos,
   categories,
   change,
@@ -78,7 +78,10 @@ const TodoList = ({
                 active={item.id === urlId && !name}
               >
                 {!name ? (
-                  <Link to={`/homework/${item.id}`} className="pr-4 text-left">
+                  <Link
+                    to={homework.todoId(item.id)}
+                    className="pr-4 text-left"
+                  >
                     {item.title + ' '}
                     <small>
                       (
@@ -156,15 +159,19 @@ const TodoList = ({
   )
 }
 
-export default TodoList
+export default TaskList
 
-TodoList.propTypes = {
-  todos: PropTypes.object,
+TaskList.propTypes = {
+  todoId: PropTypes.number,
   change: PropTypes.string,
+  name: PropTypes.string,
+  todos: PropTypes.object,
+  categories: PropTypes.object,
   alert: PropTypes.object,
   handlerChangeInput: PropTypes.func,
   handlerAddToDo: PropTypes.func,
   handlerDeleteTodo: PropTypes.func,
+  handlerTransferCategory: PropTypes.func,
   saveTodoToLocalStorage: PropTypes.func,
   removeTodoFromLocalStorage: PropTypes.func,
   showModalEditTask: PropTypes.func

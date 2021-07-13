@@ -1,10 +1,16 @@
 import React from 'react'
-import './style.scss'
-import Button from '../../Button'
-import {Trash, XCircle} from 'react-bootstrap-icons'
 import {useDispatch} from 'react-redux'
+
+import './style.scss'
+import {Trash, XCircle} from 'react-bootstrap-icons'
+
+import Button from '../../Button'
+import CategoryList from '../../CategoryList'
+
 import {actionDeleteTodo} from '../../../store/todos'
 import {actionHideModal} from '../../../store/modals'
+
+import PropTypes from 'prop-types'
 
 export default function ModalDelete({id, title}) {
   const dispatch = useDispatch()
@@ -49,4 +55,9 @@ export default function ModalDelete({id, title}) {
       </div>
     </>
   )
+}
+
+CategoryList.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string
 }
